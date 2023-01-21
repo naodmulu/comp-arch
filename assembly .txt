@@ -1,0 +1,64 @@
+𝐌𝐀: Here are two examples of how you could implement these programs in the LMC (Little Man Computer) assembly language:
+
+    INP   
+    STA NUM 
+    LDA ZERO 
+    STA FACT 
+    JMP LOOP 
+
+LOOP:
+    LDA NUM  
+    BRZ END 
+    LDA FACT
+    MUL NUM 
+    STA FACT
+    LDA NUM 
+    SUB ONE 
+    STA NUM 
+    JMP LOOP
+END:
+    OUT  
+    HLT  
+
+NUM: DAT 
+FACT: DAT
+ZERO: DAT
+ONE: DAT 
+
+
+b. Prime numbers from 0 to n, where n is the input to the program:
+    INP   ; input n
+    STA NUM ; store n in NUM
+    LDA ZERO ; load 0 into accumulator
+    STA PRIME ; store 0 in PRIME
+    JMP LOOP ; jump to LOOP
+
+LOOP:
+    LDA NUM ; load NUM
+    BRZ END ; if NUM is 0, go to END
+    LDA PRIME ; load PRIME
+    ADD ONE ; add 1 to PRIME
+    STA PRIME ; store result in PRIME
+    LDA NUM ; load NUM
+    DIV PRIME ; divide NUM by PRIME
+    BRN REMAINDER ; if there is a remainder, go to REMAINDER
+    LDA PRIME ; load PRIME
+    OUT ; output PRIME
+    JMP LOOP ; jump to LOOP
+
+REMAINDER:
+    LDA NUM ; load NUM
+    SUB ONE ; subtract 1 from NUM
+    STA NUM ; store result in NUM
+    JMP LOOP ; jump to LOOP
+
+END:
+    HLT  ; halt program
+
+NUM: DAT  ; data for NUM
+PRIME: DAT ; data for PRIME
+ZERO: DAT 0 ; constant 0
+ONE: DAT 1 ; constant 1
+
+
+Note: These programs are just examples and have not been tested. There may be errors or better ways to implement these programs in LMC.
